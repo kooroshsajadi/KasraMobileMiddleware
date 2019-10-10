@@ -1,0 +1,29 @@
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2169@2x-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2169-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2170@2x-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2170-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2172-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2176@2x-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2176-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2192@2x-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2192-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2193@2x-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2193-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2205@2x-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2205-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2207@2x-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\Group 2207-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Resources\rectangle_green-min.png
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\KasraMobileMiddleware.exe.config
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\KasraMobileMiddleware.exe
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\KasraMobileMiddleware.pdb
+C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.csprojAssemblyReference.cache
+C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.Properties.Resources.resources
+C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.csproj.GenerateResource.cache
+C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.csproj.CoreCompileInputs.cache
+C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.exe
+C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.pdb
+C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Microsoft.Web.Administration.dll
+C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.FrmSetupInstallation.resources
+C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.csproj.CopyComplete
+C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.FrmInstallationProcess.resources
