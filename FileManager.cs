@@ -16,6 +16,10 @@ namespace KasraMobileMiddleware
         {
             FrmInstallationProcessObj = frmInstallationProcessObj;
         }
+        public FileManager()
+        {
+
+        }
 
         // This method creates the needed directories in the project path before copying the web app files to the mentioned location.
         private string CreateProjectDirectories()
@@ -33,7 +37,10 @@ namespace KasraMobileMiddleware
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "خطایی رخ داد");
+                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
+                FrmInstallationProcessObj.TextAppend = $"\r\n{ex.Message}\r\n\r\n";
+                SaveTheLogAndLog();
                 return null;
             }
         }
@@ -53,7 +60,10 @@ namespace KasraMobileMiddleware
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "خطایی رخ داد");
+                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
+                FrmInstallationProcessObj.TextAppend = $"{ex.Message}\r\n\r\n";
+                SaveTheLogAndLog();
                 return null;
             }
         }
@@ -63,7 +73,7 @@ namespace KasraMobileMiddleware
          * Before begining the copying process it first creates the needed directories.
          * It also logs the appropraite messages while copying the files.
          */
-        public void CopyAndLog()
+        public bool CopyAndLog()
         {
             try
             {
@@ -130,13 +140,18 @@ namespace KasraMobileMiddleware
 
                 // Log that all the publish path files have been copied.
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nهمه ی فایل های لازم موجود در مسیر پابلیش کامل و با موفقیت به مسیر پروژه کپی شدند.\r\n\r\n";
+                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "خطایی رخ داد");
+                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
+                FrmInstallationProcessObj.TextAppend = $"{ex.Message}\r\n\r\n";
+                SaveTheLogAndLog();
+                return false;
             }
         }
-        public void SaveTheLogAndLog()
+        public bool SaveTheLogAndLog()
         {
             try
             {
@@ -146,13 +161,18 @@ namespace KasraMobileMiddleware
                     sw.Write(FrmInstallationProcessObj.TextAppend);
                 }
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nلاگ فرایند در مسیر وبسایت ذخیره شد.";
+                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "خطایی رخ داد");
+                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
+                FrmInstallationProcessObj.TextAppend = $"\r\n{ex.Message}\r\n\r\n";
+                SaveTheLogAndLog();
+                return false;
             }
         }
-        public void RestoreDatabaseAndLog()
+        public bool RestoreDatabaseAndLog()
         {
             try
             {
@@ -160,7 +180,7 @@ namespace KasraMobileMiddleware
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nدر حال restore کردن دیتابیس...\r\n\r\n";
 
                 // Find the backup file location.
-                string pathToBAK = FrmInstallationProcessObj.PublishPath + "\\Db\\MiddleBack";
+                string pathToBAK = FrmInstallationProcessObj.PublishPath + "\\Db\\MobileBackup";
 
                 // Create the connection string needed to connect to the SQL server.
                 string connectionString = "Password=" + FrmInstallationProcessObj.DatabasePassword + ";Persist Security Info=True;User ID=" + FrmInstallationProcessObj.DatabaseUsername + ";Initial Catalog=master" + ";Data Source=" + FrmInstallationProcessObj.DatabaseInstanceName;
@@ -236,11 +256,15 @@ namespace KasraMobileMiddleware
 
                 // Log that the restoring process has ended.
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nدیتابیس با موفقیت restore شد.\r\n\r\n";
-
+                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "MyProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "خطایی رخ داد");
+                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
+                FrmInstallationProcessObj.TextAppend = $"{ex.Message}\r\n\r\n";
+                SaveTheLogAndLog();
+                return false;
             }
         }
 
@@ -319,7 +343,6 @@ namespace KasraMobileMiddleware
                 MessageBox.Show(ex.Message + "هیچ داده ای یافت نشد");
                 return "";
             }
-                       // return result;
         }
     }
 }

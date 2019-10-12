@@ -63,7 +63,7 @@ namespace KasraMobileMiddleware
                 if (appPool != null)
                 {
                     FrmSetupInstallationObj.WebsiteName = string.Empty;
-                    message += "!" + "با این نام در سرور موجود است" + " pool";
+                    message += "\n!" + "با این نام در سرور موجود است" + " pool";
                     return message;
                 }
                 return string.Empty;
@@ -125,7 +125,9 @@ namespace KasraMobileMiddleware
                 }
                 if (databaseExists)
                 {
-                    MessageBox.Show("!" + "در سرور موجود است" + "." + "لطفا نام دیگری انتخاب کنید " + databaseName + " دیتابیسی با نام");
+                    
+                    MessageBox.Show("!" + "دیتابیس در سرور موجود است" + "." + "لطفا نام دیگری انتخاب کنید");
+                    //
                     FrmSetupInstallationObj.DatabaseName = string.Empty;
                 }
                 else

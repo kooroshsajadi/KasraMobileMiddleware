@@ -13,7 +13,7 @@ namespace KasraMobileMiddleware
         {
             FrmInstallationProcessObj = frmInstallationProcessObj;
         }
-        public void ConfigureWebsiteAndLog()
+        public bool ConfigureWebsiteAndLog()
         {
             try
             {
@@ -51,11 +51,16 @@ namespace KasraMobileMiddleware
 
                 // Log that the website creation was a success.
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nسایت با موفقیت بارگزاری شد.\r\n\r\n";
-
+                return true;
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "خطایی رخ داد");
+                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
+                FrmInstallationProcessObj.TextAppend = $"{ex.Message}\r\n\r\n";
+                FileManager fileManager = new FileManager();
+                fileManager.SaveTheLogAndLog();
+                return false;
             }
         }
         private void ChangeWebServiceWebConfig(string PathToWebConfig)

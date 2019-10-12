@@ -59,12 +59,18 @@ namespace KasraMobileMiddleware
                 synchronizationContext = SynchronizationContext.Current;
                 Task.Run(() => 
                 {
+                    // Create the flag in order not to continue the process if there is an error.
+                    bool flag = true;
+
                     FileManager fileManager = new FileManager(this);
-                    fileManager.CopyAndLog();
+                    flag = fileManager.CopyAndLog();
                     Installation installation = new Installation(this);
-                    installation.ConfigureWebsiteAndLog();
-                    fileManager.RestoreDatabaseAndLog();
-                    fileManager.SaveTheLogAndLog();
+                    if(flag)
+                        flag = installation.ConfigureWebsiteAndLog();
+                    if(flag)
+                        flag = fileManager.RestoreDatabaseAndLog();
+                    if(flag)
+                        flag = fileManager.SaveTheLogAndLog();
                 });
             }
             catch(Exception ex)
