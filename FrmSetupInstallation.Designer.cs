@@ -145,9 +145,9 @@
             this.LbInstanceName.AutoSize = true;
             this.LbInstanceName.Location = new System.Drawing.Point(556, 22);
             this.LbInstanceName.Name = "LbInstanceName";
-            this.LbInstanceName.Size = new System.Drawing.Size(70, 19);
+            this.LbInstanceName.Size = new System.Drawing.Size(63, 19);
             this.LbInstanceName.TabIndex = 5;
-            this.LbInstanceName.Text = "نام اینستنس";
+            this.LbInstanceName.Text = "آدرس بانک";
             // 
             // LbDatabaseUsername
             // 
