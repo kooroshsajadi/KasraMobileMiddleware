@@ -102,8 +102,11 @@ namespace KasraMobileMiddleware
             try
             {
                 DataVerification dataVerification = new DataVerification(this);
-                dataVerification.DatabaseConnectabilityVerification();
-                BtnInstallSoftware.Enabled = true;
+                bool flag = dataVerification.DatabaseConnectabilityVerification();
+                if (flag)
+                {
+                    BtnInstallSoftware.Enabled = true;
+                }
             }
             catch (Exception ex)
             {

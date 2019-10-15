@@ -97,7 +97,7 @@ namespace KasraMobileMiddleware
         }
 
         // This method checks the connectability to the database.
-        public void DatabaseConnectabilityVerification()
+        public bool DatabaseConnectabilityVerification()
         {
             try
             {
@@ -129,14 +129,18 @@ namespace KasraMobileMiddleware
                     MessageBox.Show("!" + "دیتابیس در سرور موجود است" + "." + "لطفا نام دیگری انتخاب کنید");
                     //
                     FrmSetupInstallationObj.DatabaseName = string.Empty;
+                    return false;
                 }
                 else
+                {
                     MessageBox.Show("." + "اتصال تایید شد");
-
+                    return true;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return false;
             }
         }
         private static List<string> GetDatabaseList(SqlConnection cnn)
