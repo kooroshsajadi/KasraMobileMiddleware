@@ -20,7 +20,6 @@ C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\KasraMobileMiddlewar
 C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.csprojAssemblyReference.cache
 C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.Properties.Resources.resources
 C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.csproj.GenerateResource.cache
-C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.csproj.CoreCompileInputs.cache
 C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.exe
 C:\Users\kouro\source\repos\KasraMobileMiddleware\obj\Debug\KasraMobileMiddleware.pdb
 C:\Users\kouro\source\repos\KasraMobileMiddleware\bin\Debug\Microsoft.Web.Administration.dll

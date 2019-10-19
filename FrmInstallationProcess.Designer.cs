@@ -60,6 +60,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.ProgressBarInstallation);
             this.Controls.Add(this.TextBxLog);
+            this.MaximizeBox = false;
             this.Name = "FrmInstallationProcess";
             this.Text = "FrmInstallationProcess";
             this.Load += new System.EventHandler(this.FrmInstallationProcess_Load);

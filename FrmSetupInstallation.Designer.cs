@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSetupInstallation));
-            this.GroupBxSQLServer = new System.Windows.Forms.GroupBox();
-            this.BtnVerification = new System.Windows.Forms.Button();
-            this.TxtBxDatabasePassword = new System.Windows.Forms.TextBox();
-            this.TxtBxDatabaseInstanceName = new System.Windows.Forms.TextBox();
-            this.TxtBxDatabaseUsername = new System.Windows.Forms.TextBox();
-            this.TxtBxDatabaseName = new System.Windows.Forms.TextBox();
-            this.LbDatabaseName = new System.Windows.Forms.Label();
-            this.LbInstanceName = new System.Windows.Forms.Label();
-            this.LbDatabaseUsername = new System.Windows.Forms.Label();
-            this.LbDatabasePassword = new System.Windows.Forms.Label();
+            this.GroupBxMobileDatabase = new System.Windows.Forms.GroupBox();
+            this.BtnMobileDatabaseVerification = new System.Windows.Forms.Button();
+            this.TxtBxMobileDatabasePassword = new System.Windows.Forms.TextBox();
+            this.TxtBxMobileDatabseAddress = new System.Windows.Forms.TextBox();
+            this.TxtBxMobileDatabaseUsername = new System.Windows.Forms.TextBox();
+            this.TxtBxMobileDatabaseName = new System.Windows.Forms.TextBox();
+            this.LbMobileDatabaseName = new System.Windows.Forms.Label();
+            this.LbMobileDatabaseAddress = new System.Windows.Forms.Label();
+            this.LbMobileDatabaseUsername = new System.Windows.Forms.Label();
+            this.LbDatabaseDatabasePassword = new System.Windows.Forms.Label();
             this.GroupBxApplication = new System.Windows.Forms.GroupBox();
             this.LbNote = new System.Windows.Forms.Label();
             this.BtnBrowseProjectPath = new System.Windows.Forms.Button();
@@ -53,119 +53,130 @@
             this.LbProjectPath = new System.Windows.Forms.Label();
             this.FolderBrowserDialogPath = new System.Windows.Forms.FolderBrowserDialog();
             this.BtnInstallSoftware = new System.Windows.Forms.Button();
-            this.GroupBxSQLServer.SuspendLayout();
+            this.GroupBxKasraWebsiteDatabase = new System.Windows.Forms.GroupBox();
+            this.TxtBxKasraWebsiteDatabaseUsername = new System.Windows.Forms.TextBox();
+            this.TxtBxKasraWebsiteDatabaseName = new System.Windows.Forms.TextBox();
+            this.BtnKasraWebsiteDatabaseVerification = new System.Windows.Forms.Button();
+            this.TxtBxKasraWebsiteDatabasePassword = new System.Windows.Forms.TextBox();
+            this.TxtBxKasraWebsiteDatabaseAddress = new System.Windows.Forms.TextBox();
+            this.LbKasraWebsiteDatabaseName = new System.Windows.Forms.Label();
+            this.LbKasraWebsiteDatabaseAddress = new System.Windows.Forms.Label();
+            this.LbKasraWebsiteDatabaseUsername = new System.Windows.Forms.Label();
+            this.LbKasraWebsiteDatabasePassword = new System.Windows.Forms.Label();
+            this.GroupBxMobileDatabase.SuspendLayout();
             this.GroupBxApplication.SuspendLayout();
+            this.GroupBxKasraWebsiteDatabase.SuspendLayout();
             this.SuspendLayout();
             // 
-            // GroupBxSQLServer
+            // GroupBxMobileDatabase
             // 
-            this.GroupBxSQLServer.Controls.Add(this.BtnVerification);
-            this.GroupBxSQLServer.Controls.Add(this.TxtBxDatabasePassword);
-            this.GroupBxSQLServer.Controls.Add(this.TxtBxDatabaseInstanceName);
-            this.GroupBxSQLServer.Controls.Add(this.TxtBxDatabaseUsername);
-            this.GroupBxSQLServer.Controls.Add(this.TxtBxDatabaseName);
-            this.GroupBxSQLServer.Controls.Add(this.LbDatabaseName);
-            this.GroupBxSQLServer.Controls.Add(this.LbInstanceName);
-            this.GroupBxSQLServer.Controls.Add(this.LbDatabaseUsername);
-            this.GroupBxSQLServer.Controls.Add(this.LbDatabasePassword);
-            this.GroupBxSQLServer.Location = new System.Drawing.Point(12, 194);
-            this.GroupBxSQLServer.Name = "GroupBxSQLServer";
-            this.GroupBxSQLServer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.GroupBxSQLServer.Size = new System.Drawing.Size(895, 104);
-            this.GroupBxSQLServer.TabIndex = 1;
-            this.GroupBxSQLServer.TabStop = false;
-            this.GroupBxSQLServer.Text = "SQL Server";
+            this.GroupBxMobileDatabase.Controls.Add(this.BtnMobileDatabaseVerification);
+            this.GroupBxMobileDatabase.Controls.Add(this.TxtBxMobileDatabasePassword);
+            this.GroupBxMobileDatabase.Controls.Add(this.TxtBxMobileDatabseAddress);
+            this.GroupBxMobileDatabase.Controls.Add(this.TxtBxMobileDatabaseUsername);
+            this.GroupBxMobileDatabase.Controls.Add(this.TxtBxMobileDatabaseName);
+            this.GroupBxMobileDatabase.Controls.Add(this.LbMobileDatabaseName);
+            this.GroupBxMobileDatabase.Controls.Add(this.LbMobileDatabaseAddress);
+            this.GroupBxMobileDatabase.Controls.Add(this.LbMobileDatabaseUsername);
+            this.GroupBxMobileDatabase.Controls.Add(this.LbDatabaseDatabasePassword);
+            this.GroupBxMobileDatabase.Location = new System.Drawing.Point(12, 194);
+            this.GroupBxMobileDatabase.Name = "GroupBxMobileDatabase";
+            this.GroupBxMobileDatabase.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.GroupBxMobileDatabase.Size = new System.Drawing.Size(895, 104);
+            this.GroupBxMobileDatabase.TabIndex = 1;
+            this.GroupBxMobileDatabase.TabStop = false;
+            this.GroupBxMobileDatabase.Text = "دیتابیس موبایل";
             // 
-            // BtnVerification
+            // BtnMobileDatabaseVerification
             // 
-            this.BtnVerification.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.BtnVerification.BackColor = System.Drawing.Color.Transparent;
-            this.BtnVerification.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnVerification.BackgroundImage")));
-            this.BtnVerification.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BtnVerification.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnVerification.FlatAppearance.BorderSize = 0;
-            this.BtnVerification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnVerification.ForeColor = System.Drawing.Color.White;
-            this.BtnVerification.Location = new System.Drawing.Point(328, 57);
-            this.BtnVerification.Name = "BtnVerification";
-            this.BtnVerification.Size = new System.Drawing.Size(80, 35);
-            this.BtnVerification.TabIndex = 4;
-            this.BtnVerification.Text = "بررسی";
-            this.BtnVerification.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.BtnVerification.UseVisualStyleBackColor = false;
-            this.BtnVerification.Click += new System.EventHandler(this.BtnVerification_Click);
+            this.BtnMobileDatabaseVerification.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BtnMobileDatabaseVerification.BackColor = System.Drawing.Color.Transparent;
+            this.BtnMobileDatabaseVerification.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnMobileDatabaseVerification.BackgroundImage")));
+            this.BtnMobileDatabaseVerification.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnMobileDatabaseVerification.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnMobileDatabaseVerification.FlatAppearance.BorderSize = 0;
+            this.BtnMobileDatabaseVerification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMobileDatabaseVerification.ForeColor = System.Drawing.Color.White;
+            this.BtnMobileDatabaseVerification.Location = new System.Drawing.Point(328, 57);
+            this.BtnMobileDatabaseVerification.Name = "BtnMobileDatabaseVerification";
+            this.BtnMobileDatabaseVerification.Size = new System.Drawing.Size(80, 35);
+            this.BtnMobileDatabaseVerification.TabIndex = 4;
+            this.BtnMobileDatabaseVerification.Text = "بررسی";
+            this.BtnMobileDatabaseVerification.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnMobileDatabaseVerification.UseVisualStyleBackColor = false;
+            this.BtnMobileDatabaseVerification.Click += new System.EventHandler(this.BtnMobileDatabaseVerification_Click);
             // 
-            // TxtBxDatabasePassword
+            // TxtBxMobileDatabasePassword
             // 
-            this.TxtBxDatabasePassword.Location = new System.Drawing.Point(414, 59);
-            this.TxtBxDatabasePassword.Name = "TxtBxDatabasePassword";
-            this.TxtBxDatabasePassword.PasswordChar = '*';
-            this.TxtBxDatabasePassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TxtBxDatabasePassword.Size = new System.Drawing.Size(136, 26);
-            this.TxtBxDatabasePassword.TabIndex = 3;
+            this.TxtBxMobileDatabasePassword.Location = new System.Drawing.Point(414, 59);
+            this.TxtBxMobileDatabasePassword.Name = "TxtBxMobileDatabasePassword";
+            this.TxtBxMobileDatabasePassword.PasswordChar = '*';
+            this.TxtBxMobileDatabasePassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TxtBxMobileDatabasePassword.Size = new System.Drawing.Size(136, 26);
+            this.TxtBxMobileDatabasePassword.TabIndex = 3;
             // 
-            // TxtBxDatabaseInstanceName
+            // TxtBxMobileDatabseAddress
             // 
-            this.TxtBxDatabaseInstanceName.Location = new System.Drawing.Point(328, 19);
-            this.TxtBxDatabaseInstanceName.Name = "TxtBxDatabaseInstanceName";
-            this.TxtBxDatabaseInstanceName.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TxtBxDatabaseInstanceName.Size = new System.Drawing.Size(222, 26);
-            this.TxtBxDatabaseInstanceName.TabIndex = 1;
+            this.TxtBxMobileDatabseAddress.Location = new System.Drawing.Point(328, 19);
+            this.TxtBxMobileDatabseAddress.Name = "TxtBxMobileDatabseAddress";
+            this.TxtBxMobileDatabseAddress.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TxtBxMobileDatabseAddress.Size = new System.Drawing.Size(222, 26);
+            this.TxtBxMobileDatabseAddress.TabIndex = 1;
             // 
-            // TxtBxDatabaseUsername
+            // TxtBxMobileDatabaseUsername
             // 
-            this.TxtBxDatabaseUsername.Location = new System.Drawing.Point(654, 59);
-            this.TxtBxDatabaseUsername.Name = "TxtBxDatabaseUsername";
-            this.TxtBxDatabaseUsername.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TxtBxDatabaseUsername.Size = new System.Drawing.Size(136, 26);
-            this.TxtBxDatabaseUsername.TabIndex = 2;
-            this.TxtBxDatabaseUsername.Text = "sa";
+            this.TxtBxMobileDatabaseUsername.Location = new System.Drawing.Point(654, 59);
+            this.TxtBxMobileDatabaseUsername.Name = "TxtBxMobileDatabaseUsername";
+            this.TxtBxMobileDatabaseUsername.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TxtBxMobileDatabaseUsername.Size = new System.Drawing.Size(136, 26);
+            this.TxtBxMobileDatabaseUsername.TabIndex = 2;
+            this.TxtBxMobileDatabaseUsername.Text = "sa";
             // 
-            // TxtBxDatabaseName
+            // TxtBxMobileDatabaseName
             // 
-            this.TxtBxDatabaseName.Location = new System.Drawing.Point(654, 19);
-            this.TxtBxDatabaseName.Name = "TxtBxDatabaseName";
-            this.TxtBxDatabaseName.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TxtBxDatabaseName.Size = new System.Drawing.Size(136, 26);
-            this.TxtBxDatabaseName.TabIndex = 0;
-            this.TxtBxDatabaseName.Text = "KasraMobileDb";
-            this.TxtBxDatabaseName.TextChanged += new System.EventHandler(this.TxtBxDatabaseName_TextChanged);
+            this.TxtBxMobileDatabaseName.Location = new System.Drawing.Point(654, 19);
+            this.TxtBxMobileDatabaseName.Name = "TxtBxMobileDatabaseName";
+            this.TxtBxMobileDatabaseName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TxtBxMobileDatabaseName.Size = new System.Drawing.Size(136, 26);
+            this.TxtBxMobileDatabaseName.TabIndex = 0;
+            this.TxtBxMobileDatabaseName.Text = "KasraMobileDb";
+            this.TxtBxMobileDatabaseName.TextChanged += new System.EventHandler(this.TxtBxDatabaseName_TextChanged);
             // 
-            // LbDatabaseName
+            // LbMobileDatabaseName
             // 
-            this.LbDatabaseName.AutoSize = true;
-            this.LbDatabaseName.Location = new System.Drawing.Point(796, 22);
-            this.LbDatabaseName.Name = "LbDatabaseName";
-            this.LbDatabaseName.Size = new System.Drawing.Size(48, 19);
-            this.LbDatabaseName.TabIndex = 6;
-            this.LbDatabaseName.Text = "نام بانک";
+            this.LbMobileDatabaseName.AutoSize = true;
+            this.LbMobileDatabaseName.Location = new System.Drawing.Point(796, 22);
+            this.LbMobileDatabaseName.Name = "LbMobileDatabaseName";
+            this.LbMobileDatabaseName.Size = new System.Drawing.Size(48, 19);
+            this.LbMobileDatabaseName.TabIndex = 6;
+            this.LbMobileDatabaseName.Text = "نام بانک";
             // 
-            // LbInstanceName
+            // LbMobileDatabaseAddress
             // 
-            this.LbInstanceName.AutoSize = true;
-            this.LbInstanceName.Location = new System.Drawing.Point(556, 22);
-            this.LbInstanceName.Name = "LbInstanceName";
-            this.LbInstanceName.Size = new System.Drawing.Size(63, 19);
-            this.LbInstanceName.TabIndex = 5;
-            this.LbInstanceName.Text = "آدرس بانک";
+            this.LbMobileDatabaseAddress.AutoSize = true;
+            this.LbMobileDatabaseAddress.Location = new System.Drawing.Point(556, 22);
+            this.LbMobileDatabaseAddress.Name = "LbMobileDatabaseAddress";
+            this.LbMobileDatabaseAddress.Size = new System.Drawing.Size(63, 19);
+            this.LbMobileDatabaseAddress.TabIndex = 5;
+            this.LbMobileDatabaseAddress.Text = "آدرس بانک";
             // 
-            // LbDatabaseUsername
+            // LbMobileDatabaseUsername
             // 
-            this.LbDatabaseUsername.AutoSize = true;
-            this.LbDatabaseUsername.Location = new System.Drawing.Point(796, 62);
-            this.LbDatabaseUsername.Name = "LbDatabaseUsername";
-            this.LbDatabaseUsername.Size = new System.Drawing.Size(58, 19);
-            this.LbDatabaseUsername.TabIndex = 4;
-            this.LbDatabaseUsername.Text = "نام کاربری";
+            this.LbMobileDatabaseUsername.AutoSize = true;
+            this.LbMobileDatabaseUsername.Location = new System.Drawing.Point(796, 62);
+            this.LbMobileDatabaseUsername.Name = "LbMobileDatabaseUsername";
+            this.LbMobileDatabaseUsername.Size = new System.Drawing.Size(58, 19);
+            this.LbMobileDatabaseUsername.TabIndex = 4;
+            this.LbMobileDatabaseUsername.Text = "نام کاربری";
             // 
-            // LbDatabasePassword
+            // LbDatabaseDatabasePassword
             // 
-            this.LbDatabasePassword.AutoSize = true;
-            this.LbDatabasePassword.Location = new System.Drawing.Point(556, 62);
-            this.LbDatabasePassword.Name = "LbDatabasePassword";
-            this.LbDatabasePassword.Size = new System.Drawing.Size(47, 19);
-            this.LbDatabasePassword.TabIndex = 3;
-            this.LbDatabasePassword.Text = "رمز عبور";
+            this.LbDatabaseDatabasePassword.AutoSize = true;
+            this.LbDatabaseDatabasePassword.Location = new System.Drawing.Point(556, 62);
+            this.LbDatabaseDatabasePassword.Name = "LbDatabaseDatabasePassword";
+            this.LbDatabaseDatabasePassword.Size = new System.Drawing.Size(47, 19);
+            this.LbDatabaseDatabasePassword.TabIndex = 3;
+            this.LbDatabaseDatabasePassword.Text = "رمز عبور";
             // 
             // GroupBxApplication
             // 
@@ -324,39 +335,152 @@
             this.BtnInstallSoftware.FlatAppearance.BorderSize = 0;
             this.BtnInstallSoftware.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnInstallSoftware.ForeColor = System.Drawing.Color.White;
-            this.BtnInstallSoftware.Location = new System.Drawing.Point(12, 304);
+            this.BtnInstallSoftware.Location = new System.Drawing.Point(12, 414);
             this.BtnInstallSoftware.Name = "BtnInstallSoftware";
             this.BtnInstallSoftware.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.BtnInstallSoftware.Size = new System.Drawing.Size(89, 35);
-            this.BtnInstallSoftware.TabIndex = 2;
+            this.BtnInstallSoftware.TabIndex = 3;
             this.BtnInstallSoftware.Text = "نصب نرم افزار";
             this.BtnInstallSoftware.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.BtnInstallSoftware.UseVisualStyleBackColor = false;
             this.BtnInstallSoftware.Click += new System.EventHandler(this.BtnInstallSoftware_Click);
             // 
+            // GroupBxKasraWebsiteDatabase
+            // 
+            this.GroupBxKasraWebsiteDatabase.Controls.Add(this.TxtBxKasraWebsiteDatabaseUsername);
+            this.GroupBxKasraWebsiteDatabase.Controls.Add(this.TxtBxKasraWebsiteDatabaseName);
+            this.GroupBxKasraWebsiteDatabase.Controls.Add(this.BtnKasraWebsiteDatabaseVerification);
+            this.GroupBxKasraWebsiteDatabase.Controls.Add(this.TxtBxKasraWebsiteDatabasePassword);
+            this.GroupBxKasraWebsiteDatabase.Controls.Add(this.TxtBxKasraWebsiteDatabaseAddress);
+            this.GroupBxKasraWebsiteDatabase.Controls.Add(this.LbKasraWebsiteDatabaseName);
+            this.GroupBxKasraWebsiteDatabase.Controls.Add(this.LbKasraWebsiteDatabaseAddress);
+            this.GroupBxKasraWebsiteDatabase.Controls.Add(this.LbKasraWebsiteDatabaseUsername);
+            this.GroupBxKasraWebsiteDatabase.Controls.Add(this.LbKasraWebsiteDatabasePassword);
+            this.GroupBxKasraWebsiteDatabase.Location = new System.Drawing.Point(12, 304);
+            this.GroupBxKasraWebsiteDatabase.Name = "GroupBxKasraWebsiteDatabase";
+            this.GroupBxKasraWebsiteDatabase.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.GroupBxKasraWebsiteDatabase.Size = new System.Drawing.Size(895, 104);
+            this.GroupBxKasraWebsiteDatabase.TabIndex = 2;
+            this.GroupBxKasraWebsiteDatabase.TabStop = false;
+            this.GroupBxKasraWebsiteDatabase.Text = "دیتابیس سایت کسرا";
+            // 
+            // TxtBxKasraWebsiteDatabaseUsername
+            // 
+            this.TxtBxKasraWebsiteDatabaseUsername.Location = new System.Drawing.Point(654, 62);
+            this.TxtBxKasraWebsiteDatabaseUsername.Name = "TxtBxKasraWebsiteDatabaseUsername";
+            this.TxtBxKasraWebsiteDatabaseUsername.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TxtBxKasraWebsiteDatabaseUsername.Size = new System.Drawing.Size(136, 26);
+            this.TxtBxKasraWebsiteDatabaseUsername.TabIndex = 2;
+            this.TxtBxKasraWebsiteDatabaseUsername.Text = "sa";
+            // 
+            // TxtBxKasraWebsiteDatabaseName
+            // 
+            this.TxtBxKasraWebsiteDatabaseName.Location = new System.Drawing.Point(654, 19);
+            this.TxtBxKasraWebsiteDatabaseName.Name = "TxtBxKasraWebsiteDatabaseName";
+            this.TxtBxKasraWebsiteDatabaseName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TxtBxKasraWebsiteDatabaseName.Size = new System.Drawing.Size(136, 26);
+            this.TxtBxKasraWebsiteDatabaseName.TabIndex = 0;
+            this.TxtBxKasraWebsiteDatabaseName.Text = "Framework";
+            // 
+            // BtnKasraWebsiteDatabaseVerification
+            // 
+            this.BtnKasraWebsiteDatabaseVerification.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BtnKasraWebsiteDatabaseVerification.BackColor = System.Drawing.Color.Transparent;
+            this.BtnKasraWebsiteDatabaseVerification.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnKasraWebsiteDatabaseVerification.BackgroundImage")));
+            this.BtnKasraWebsiteDatabaseVerification.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnKasraWebsiteDatabaseVerification.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnKasraWebsiteDatabaseVerification.FlatAppearance.BorderSize = 0;
+            this.BtnKasraWebsiteDatabaseVerification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnKasraWebsiteDatabaseVerification.ForeColor = System.Drawing.Color.White;
+            this.BtnKasraWebsiteDatabaseVerification.Location = new System.Drawing.Point(328, 57);
+            this.BtnKasraWebsiteDatabaseVerification.Name = "BtnKasraWebsiteDatabaseVerification";
+            this.BtnKasraWebsiteDatabaseVerification.Size = new System.Drawing.Size(80, 35);
+            this.BtnKasraWebsiteDatabaseVerification.TabIndex = 4;
+            this.BtnKasraWebsiteDatabaseVerification.Text = "بررسی";
+            this.BtnKasraWebsiteDatabaseVerification.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnKasraWebsiteDatabaseVerification.UseVisualStyleBackColor = false;
+            this.BtnKasraWebsiteDatabaseVerification.Click += new System.EventHandler(this.BtnKasraWebsiteDatabaseVerification_Click);
+            // 
+            // TxtBxKasraWebsiteDatabasePassword
+            // 
+            this.TxtBxKasraWebsiteDatabasePassword.Location = new System.Drawing.Point(414, 59);
+            this.TxtBxKasraWebsiteDatabasePassword.Name = "TxtBxKasraWebsiteDatabasePassword";
+            this.TxtBxKasraWebsiteDatabasePassword.PasswordChar = '*';
+            this.TxtBxKasraWebsiteDatabasePassword.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TxtBxKasraWebsiteDatabasePassword.Size = new System.Drawing.Size(136, 26);
+            this.TxtBxKasraWebsiteDatabasePassword.TabIndex = 3;
+            // 
+            // TxtBxKasraWebsiteDatabaseAddress
+            // 
+            this.TxtBxKasraWebsiteDatabaseAddress.Location = new System.Drawing.Point(328, 19);
+            this.TxtBxKasraWebsiteDatabaseAddress.Name = "TxtBxKasraWebsiteDatabaseAddress";
+            this.TxtBxKasraWebsiteDatabaseAddress.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TxtBxKasraWebsiteDatabaseAddress.Size = new System.Drawing.Size(222, 26);
+            this.TxtBxKasraWebsiteDatabaseAddress.TabIndex = 1;
+            // 
+            // LbKasraWebsiteDatabaseName
+            // 
+            this.LbKasraWebsiteDatabaseName.AutoSize = true;
+            this.LbKasraWebsiteDatabaseName.Location = new System.Drawing.Point(796, 22);
+            this.LbKasraWebsiteDatabaseName.Name = "LbKasraWebsiteDatabaseName";
+            this.LbKasraWebsiteDatabaseName.Size = new System.Drawing.Size(48, 19);
+            this.LbKasraWebsiteDatabaseName.TabIndex = 6;
+            this.LbKasraWebsiteDatabaseName.Text = "نام بانک";
+            // 
+            // LbKasraWebsiteDatabaseAddress
+            // 
+            this.LbKasraWebsiteDatabaseAddress.AutoSize = true;
+            this.LbKasraWebsiteDatabaseAddress.Location = new System.Drawing.Point(556, 22);
+            this.LbKasraWebsiteDatabaseAddress.Name = "LbKasraWebsiteDatabaseAddress";
+            this.LbKasraWebsiteDatabaseAddress.Size = new System.Drawing.Size(63, 19);
+            this.LbKasraWebsiteDatabaseAddress.TabIndex = 5;
+            this.LbKasraWebsiteDatabaseAddress.Text = "آدرس بانک";
+            // 
+            // LbKasraWebsiteDatabaseUsername
+            // 
+            this.LbKasraWebsiteDatabaseUsername.AutoSize = true;
+            this.LbKasraWebsiteDatabaseUsername.Location = new System.Drawing.Point(796, 62);
+            this.LbKasraWebsiteDatabaseUsername.Name = "LbKasraWebsiteDatabaseUsername";
+            this.LbKasraWebsiteDatabaseUsername.Size = new System.Drawing.Size(58, 19);
+            this.LbKasraWebsiteDatabaseUsername.TabIndex = 4;
+            this.LbKasraWebsiteDatabaseUsername.Text = "نام کاربری";
+            // 
+            // LbKasraWebsiteDatabasePassword
+            // 
+            this.LbKasraWebsiteDatabasePassword.AutoSize = true;
+            this.LbKasraWebsiteDatabasePassword.Location = new System.Drawing.Point(556, 62);
+            this.LbKasraWebsiteDatabasePassword.Name = "LbKasraWebsiteDatabasePassword";
+            this.LbKasraWebsiteDatabasePassword.Size = new System.Drawing.Size(47, 19);
+            this.LbKasraWebsiteDatabasePassword.TabIndex = 3;
+            this.LbKasraWebsiteDatabasePassword.Text = "رمز عبور";
+            // 
             // FrmSetupInstallation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(919, 346);
+            this.ClientSize = new System.Drawing.Size(919, 450);
+            this.Controls.Add(this.GroupBxKasraWebsiteDatabase);
             this.Controls.Add(this.BtnInstallSoftware);
             this.Controls.Add(this.GroupBxApplication);
-            this.Controls.Add(this.GroupBxSQLServer);
+            this.Controls.Add(this.GroupBxMobileDatabase);
             this.Font = new System.Drawing.Font("Vazir", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.MinimizeBox = false;
             this.Name = "FrmSetupInstallation";
-            this.Text = "Form1";
-            this.GroupBxSQLServer.ResumeLayout(false);
-            this.GroupBxSQLServer.PerformLayout();
+            this.Load += new System.EventHandler(this.FrmSetupInstallation_Load);
+            this.GroupBxMobileDatabase.ResumeLayout(false);
+            this.GroupBxMobileDatabase.PerformLayout();
             this.GroupBxApplication.ResumeLayout(false);
             this.GroupBxApplication.PerformLayout();
+            this.GroupBxKasraWebsiteDatabase.ResumeLayout(false);
+            this.GroupBxKasraWebsiteDatabase.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox GroupBxSQLServer;
+        private System.Windows.Forms.GroupBox GroupBxMobileDatabase;
         private System.Windows.Forms.GroupBox GroupBxApplication;
         private System.Windows.Forms.Label LbNote;
         private System.Windows.Forms.Button BtnBrowseProjectPath;
@@ -370,16 +494,26 @@
         private System.Windows.Forms.Label LbPortNumber;
         private System.Windows.Forms.Label LbProjectPath;
         private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialogPath;
-        private System.Windows.Forms.Button BtnVerification;
-        private System.Windows.Forms.TextBox TxtBxDatabasePassword;
-        private System.Windows.Forms.TextBox TxtBxDatabaseInstanceName;
-        private System.Windows.Forms.TextBox TxtBxDatabaseUsername;
-        private System.Windows.Forms.TextBox TxtBxDatabaseName;
-        private System.Windows.Forms.Label LbDatabaseName;
-        private System.Windows.Forms.Label LbInstanceName;
-        private System.Windows.Forms.Label LbDatabaseUsername;
-        private System.Windows.Forms.Label LbDatabasePassword;
+        private System.Windows.Forms.Button BtnMobileDatabaseVerification;
+        private System.Windows.Forms.TextBox TxtBxMobileDatabasePassword;
+        private System.Windows.Forms.TextBox TxtBxMobileDatabseAddress;
+        private System.Windows.Forms.TextBox TxtBxMobileDatabaseUsername;
+        private System.Windows.Forms.TextBox TxtBxMobileDatabaseName;
+        private System.Windows.Forms.Label LbMobileDatabaseName;
+        private System.Windows.Forms.Label LbMobileDatabaseAddress;
+        private System.Windows.Forms.Label LbMobileDatabaseUsername;
+        private System.Windows.Forms.Label LbDatabaseDatabasePassword;
         private System.Windows.Forms.Button BtnInstallSoftware;
+        private System.Windows.Forms.GroupBox GroupBxKasraWebsiteDatabase;
+        private System.Windows.Forms.TextBox TxtBxKasraWebsiteDatabaseUsername;
+        private System.Windows.Forms.TextBox TxtBxKasraWebsiteDatabaseName;
+        private System.Windows.Forms.Button BtnKasraWebsiteDatabaseVerification;
+        private System.Windows.Forms.TextBox TxtBxKasraWebsiteDatabasePassword;
+        private System.Windows.Forms.TextBox TxtBxKasraWebsiteDatabaseAddress;
+        private System.Windows.Forms.Label LbKasraWebsiteDatabaseName;
+        private System.Windows.Forms.Label LbKasraWebsiteDatabaseAddress;
+        private System.Windows.Forms.Label LbKasraWebsiteDatabaseUsername;
+        private System.Windows.Forms.Label LbKasraWebsiteDatabasePassword;
     }
 }
 

@@ -97,12 +97,12 @@ namespace KasraMobileMiddleware
         }
 
         // This method checks the connectability to the database.
-        public bool DatabaseConnectabilityVerification()
+        public bool DatabaseConnectabilityVerification(string databaseName, string instanceName, string databaseUsername, string databasePassword, bool createDatabase)
         {
             try
             {
                 // Try to open the SQL server using the connection string.
-                string connectionString = "Password=" + FrmSetupInstallationObj.DatabasePassword + ";Persist Security Info=True;User ID=" + FrmSetupInstallationObj.DatabaseUsername + ";Initial Catalog=master" + ";Data Source=" + FrmSetupInstallationObj.DatabaseInstanceName;
+                string connectionString = "Password=" + databasePassword + ";Persist Security Info=True;User ID=" + databaseUsername + ";Initial Catalog=master" + ";Data Source=" + instanceName;
                 SqlConnection cnn = new SqlConnection(connectionString);
                 cnn.Open();
 
@@ -112,23 +112,28 @@ namespace KasraMobileMiddleware
                 // This valriable turns to true if a database with the same name exists.
                 bool databaseExists = false;
                 // This variable will hold the database name which is equivalent to the given name.
-                string databaseName = "";
+                string existingDatabaseName = "";
                 // The database names musn't be the same even if their characters differ in being lower or upper case.
                 for (int i = 0; i < list.Count; i++)
                 {
-                    if (list[i].ToLower() == FrmSetupInstallationObj.DatabaseName.ToLower())
+                    if (list[i].ToLower() == databaseName.ToLower())
                     {
                         databaseExists = true;
-                        databaseName = list[i];
+                        existingDatabaseName = list[i];
                         break;
                     }
                 }
-                if (databaseExists)
+                if (createDatabase && databaseExists)
                 {
                     
-                    MessageBox.Show("!" + "دیتابیس در سرور موجود است" + "." + "لطفا نام دیگری انتخاب کنید");
-                    //
-                    FrmSetupInstallationObj.DatabaseName = string.Empty;
+                    MessageBox.Show("." + "در سرور موجود است" + "!" + " لطفا نام دیگری انتخاب کنید " + existingDatabaseName + " دیتابیس");
+                    FrmSetupInstallationObj.MobileDatabaseName = string.Empty;
+                    return false;
+                }
+                else if (!createDatabase && !databaseExists)
+                {
+                    MessageBox.Show("!" + "در سرور موجود نیست" + databaseName + " دیتابیس");
+                    FrmSetupInstallationObj.MobileDatabaseName = string.Empty;
                     return false;
                 }
                 else

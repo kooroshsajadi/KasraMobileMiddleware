@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,22 +12,30 @@ namespace KasraMobileMiddleware
         public string WebsiteName { set; get; }
         public string PortNumber { set; get; }
         public string ProjectPath { set; get; }
-        public string DatabaseName { set; get; }
-        public string DatabaseInstanceName { set; get; }
-        public string DatabaseUsername { set; get; }
-        public string DatabasePassword { set; get; }
+        public string MobileDatabaseName { set; get; }
+        public string MobileDatabaseAddress { set; get; }
+        public string MobileDatabaseUsername { set; get; }
+        public string MobileDatabasePassword { set; get; }
+        public string KasraWebsiteDatabaseName { set; get; }
+        public string KasraWebsiteDatabaseAddress { set; get; }
+        public string KasraWebsiteDatabaseUsername { set; get; }
+        public string KasraWebsiteDatabasePassword { set; get; }
 
         private SynchronizationContext synchronizationContext;
-        public FrmInstallationProcess(string websiteName, string portNumber, string publishPath, string projectPath, string databaseName, string databaseInstanceName, string databaseUsername, string databasePassword)
+        public FrmInstallationProcess(string websiteName, string portNumber, string publishPath, string projectPath, string mobileDatabaseName, string mobileDatabaseAddress, string mobileDatabaseUsername, string mobileDatabasePassword, string kasraDatabaseName, string kasraDatabaseAddress, string kasraDatabaseUsername, string kasraDatabasePassword)
         {
             WebsiteName = websiteName;
             PortNumber = portNumber;
             PublishPath = publishPath;
             ProjectPath = projectPath;
-            DatabaseName = databaseName;
-            DatabaseInstanceName = databaseInstanceName;
-            DatabaseUsername = databaseUsername;
-            DatabasePassword = databasePassword;
+            MobileDatabaseName = mobileDatabaseName;
+            MobileDatabaseAddress = mobileDatabaseAddress;
+            MobileDatabaseUsername = mobileDatabaseUsername;
+            MobileDatabasePassword = mobileDatabasePassword;
+            KasraWebsiteDatabaseName = kasraDatabaseName;
+            KasraWebsiteDatabaseAddress = kasraDatabaseAddress;
+            KasraWebsiteDatabaseUsername = kasraDatabaseUsername;
+            KasraWebsiteDatabasePassword = kasraDatabasePassword;
             InitializeComponent();
         }
         public int ProgressBarValue
@@ -62,14 +71,26 @@ namespace KasraMobileMiddleware
                     // Create the flag in order not to continue the process if there is an error.
                     bool flag = true;
 
+                    // Create the root destination directory.
+                    Directory.CreateDirectory($"{ProjectPath}\\{WebsiteName}");
+
+                    // Create the destination directory.
+                    string dir = $"{ProjectPath}\\{WebsiteName}\\Project";
+
                     FileManager fileManager = new FileManager(this);
-                    flag = fileManager.CopyAndLog();
+                    flag = fileManager.CopyAndLog($"{PublishPath}\\App", dir);
                     Installation installation = new Installation(this);
-                    if(flag)
+                    if (flag)
                         flag = installation.ConfigureWebsiteAndLog();
-                    if(flag)
-                        flag = fileManager.RestoreDatabaseAndLog();
-                    if(flag)
+                    if (flag)
+                    {
+                        // Create the MDF and LDF files directory.
+                        dir = $"{ProjectPath}\\{WebsiteName}\\Data";
+                        Directory.CreateDirectory(dir);
+
+                        flag = fileManager.RestoreDatabaseAndLog(PortNumber, PublishPath, MobileDatabaseName, MobileDatabaseAddress, MobileDatabaseUsername, MobileDatabasePassword, dir);
+                    }
+                    if (flag)
                         flag = fileManager.SaveTheLogAndLog();
                 });
             }

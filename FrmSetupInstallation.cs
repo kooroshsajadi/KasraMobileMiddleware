@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Input;
 
 namespace KasraMobileMiddleware
 {
@@ -38,26 +37,30 @@ namespace KasraMobileMiddleware
             get { return TxtBxPortNumber.Text; }
         }
 
-        public string DatabaseName
+        public string MobileDatabaseName
         {
-            set { TxtBxDatabaseName.Text = value; }
-            get { return TxtBxDatabaseName.Text; }
+            set { TxtBxMobileDatabaseName.Text = value; }
+            get { return TxtBxMobileDatabaseName.Text; }
         }
 
-        public string DatabaseInstanceName
+        public string MobileDatabaseAddress
         {
-            get { return TxtBxDatabaseInstanceName.Text; }
+            get { return TxtBxMobileDatabseAddress.Text; }
         }
 
-        public string DatabaseUsername
+        public string MobileDatabaseUsername
         {
-            get { return TxtBxDatabaseUsername.Text; }
+            get { return TxtBxMobileDatabaseUsername.Text; }
         }
 
-        public string DatabasePassword
+        public string MobileDatabsePassword
         {
-            get { return TxtBxDatabasePassword.Text; }
+            get { return TxtBxMobileDatabasePassword.Text; }
         }
+
+        // Create two flags in order to check each database properties are verified or not.
+        bool KasraMobileDatabaseFlag = false, KasraWebsiteDatabaseFlag = false;
+
         public FrmSetupInstallation()
         {
             InitializeComponent();
@@ -97,13 +100,13 @@ namespace KasraMobileMiddleware
             }
         }
 
-        private void BtnVerification_Click(object sender, EventArgs e)
+        private void BtnMobileDatabaseVerification_Click(object sender, EventArgs e)
         {
             try
             {
                 DataVerification dataVerification = new DataVerification(this);
-                bool flag = dataVerification.DatabaseConnectabilityVerification();
-                if (flag)
+                KasraMobileDatabaseFlag = dataVerification.DatabaseConnectabilityVerification(TxtBxMobileDatabaseName.Text, TxtBxMobileDatabseAddress.Text, TxtBxMobileDatabaseUsername.Text, TxtBxMobileDatabasePassword.Text, true);
+                if (KasraMobileDatabaseFlag && KasraWebsiteDatabaseFlag)
                 {
                     BtnInstallSoftware.Enabled = true;
                 }
@@ -111,10 +114,10 @@ namespace KasraMobileMiddleware
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                TxtBxDatabaseName.Text = string.Empty;
-                TxtBxDatabaseInstanceName.Text = string.Empty;
-                TxtBxDatabaseUsername.Text = string.Empty;
-                TxtBxDatabasePassword.Text = string.Empty;
+                TxtBxMobileDatabaseName.Text = string.Empty;
+                TxtBxMobileDatabseAddress.Text = string.Empty;
+                TxtBxMobileDatabaseUsername.Text = string.Empty;
+                TxtBxMobileDatabasePassword.Text = string.Empty;
             }
         }
 
@@ -126,7 +129,7 @@ namespace KasraMobileMiddleware
                 string verificationMessage = dataVerification.FinalVerification();
                 if (verificationMessage.Equals(string.Empty))
                 {
-                    FrmInstallationProcess frmInstallationProcess = new FrmInstallationProcess(TxtBxWebsiteName.Text, TxtBxPortNumber.Text, TxtBxPublishPath.Text, TxtBxProjectPath.Text, TxtBxDatabaseName.Text, TxtBxDatabaseInstanceName.Text, TxtBxDatabaseUsername.Text, TxtBxDatabasePassword.Text);
+                    FrmInstallationProcess frmInstallationProcess = new FrmInstallationProcess(TxtBxWebsiteName.Text, TxtBxPortNumber.Text, TxtBxPublishPath.Text, TxtBxProjectPath.Text, TxtBxMobileDatabaseName.Text, TxtBxMobileDatabseAddress.Text, TxtBxMobileDatabaseUsername.Text, TxtBxMobileDatabasePassword.Text, TxtBxKasraWebsiteDatabaseName.Text, TxtBxKasraWebsiteDatabaseAddress.Text, TxtBxKasraWebsiteDatabaseUsername.Text, TxtBxKasraWebsiteDatabasePassword.Text);
                     frmInstallationProcess.Show();
                     Hide();
                 }
@@ -147,6 +150,32 @@ namespace KasraMobileMiddleware
         }
 
         private void TxtBxDatabaseName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnKasraWebsiteDatabaseVerification_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataVerification dataVerification = new DataVerification(this);
+                KasraWebsiteDatabaseFlag = dataVerification.DatabaseConnectabilityVerification(TxtBxKasraWebsiteDatabaseName.Text, TxtBxKasraWebsiteDatabaseAddress.Text, TxtBxKasraWebsiteDatabaseUsername.Text, TxtBxKasraWebsiteDatabasePassword.Text, false);
+                if (KasraWebsiteDatabaseFlag && KasraMobileDatabaseFlag)
+                {
+                    BtnInstallSoftware.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                TxtBxMobileDatabaseName.Text = string.Empty;
+                TxtBxMobileDatabseAddress.Text = string.Empty;
+                TxtBxMobileDatabaseUsername.Text = string.Empty;
+                TxtBxMobileDatabasePassword.Text = string.Empty;
+            }
+        }
+
+        private void FrmSetupInstallation_Load(object sender, EventArgs e)
         {
 
         }

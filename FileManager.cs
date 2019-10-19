@@ -22,13 +22,14 @@ namespace KasraMobileMiddleware
         }
 
         // This method creates the needed directories in the project path before copying the web app files to the mentioned location.
-        private string CreateProjectDirectories()
+        private string CreateProjectDirectories(string projectPath)
         {
             try
             {
+                
                 // Define 'ProjectDrive\{WebsiteName}\{WebsiteName}' directories.
                 string newDirectories = $@"{FrmInstallationProcessObj.WebsiteName}\{FrmInstallationProcessObj.WebsiteName}";
-                string dir = FrmInstallationProcessObj.ProjectPath + newDirectories;
+                string dir = $"{projectPath}";
 
                 // Create '{WebsiteName}\{WebsiteName}' directories.
                 Directory.CreateDirectory(dir);
@@ -73,63 +74,25 @@ namespace KasraMobileMiddleware
          * Before begining the copying process it first creates the needed directories.
          * It also logs the appropraite messages while copying the files.
          */
-        public bool CopyAndLog()
+        public bool CopyAndLog(string sourceAddress, string destinationAddress)
         {
             try
             {
-                // Get the paths to the publish files.
-                string publishPath1 = FrmInstallationProcessObj.PublishPath + "\\MobileMiddleWare";
-                string publishPath2 = FrmInstallationProcessObj.PublishPath + "\\KasraWebService";
-
                 // Log that the essenial folders are being created.
                 FrmInstallationProcessObj.TextAppend = DateTimeOffset.Now + "\r\nدر حال ساختن فولدر های لازم...\r\n\r\n";
 
-                /*
-                 * Create the initial folders in the project path where the files should be copied to.
-                 * Then, create the subfolders in the following lines.
-                 */
-                string projectPath = CreateProjectDirectories();
-
-                
-                CreateDataDirectory();
-
-                // Create the parent folder called 'MobileMiddleWare'.
-                string mobileMiddleWarePath = projectPath + "\\MobileMiddleWare";
-                Directory.CreateDirectory(mobileMiddleWarePath);
-
-                // Create all the necessary directories before copying the publishpath1.
-                foreach (string dirPath in Directory.GetDirectories(publishPath1, "*", SearchOption.AllDirectories))
-                    Directory.CreateDirectory(dirPath.Replace(publishPath1, mobileMiddleWarePath));
-
-                // Create the parent folder called 'KasraWebService'.
-                string kasraWebServicePath = projectPath + "\\KasraWebService";
-                Directory.CreateDirectory(mobileMiddleWarePath);
-
-                // Create all the necessary directories before copying the publishpath2.
-                foreach (string dirPath in Directory.GetDirectories(publishPath2, "*", SearchOption.AllDirectories))
-                    Directory.CreateDirectory(dirPath.Replace(publishPath2, kasraWebServicePath));
+                // Create all the necessary directories before copying the destinationAddress' contents.
+                foreach (string dirPath in Directory.GetDirectories(sourceAddress, "*", SearchOption.AllDirectories))
+                    Directory.CreateDirectory(dirPath.Replace(sourceAddress, destinationAddress));
 
                 // Count all the files available in the publish paths.
-                int allFiles = Directory.GetFiles(publishPath1, "*.*", SearchOption.AllDirectories).Length
-                               + Directory.GetFiles(publishPath2, "*.*", SearchOption.AllDirectories).Length;
+                int allFiles = Directory.GetFiles(sourceAddress, "*.*", SearchOption.AllDirectories).Length;
                 int counter = 0;
 
-                //Copies all the files & Replaces any file with the same name for publishPath1.
-                foreach (string newPath in Directory.GetFiles(publishPath1, "*.*", SearchOption.AllDirectories))
+                //Copies all the files & Replaces any file with the same name in the destinationAddress.
+                foreach (string newPath in Directory.GetFiles(sourceAddress, "*.*", SearchOption.AllDirectories))
                 {
-                    string s = newPath.Replace(publishPath1, mobileMiddleWarePath);
-                    File.Copy(newPath, s, true);
-                    counter++;
-                    FrmInstallationProcessObj.ProgressBarValue = counter * 100 / allFiles;
-
-                    // Log the copied information.
-                    FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nفایل " + Path.GetFileName(newPath) + " به مسیر " + s + " کپی شد.\r\n\r\n";
-                }
-
-                //Copies all the files & Replaces any file with the same name for publishPath2.
-                foreach (string newPath in Directory.GetFiles(publishPath2, "*.*", SearchOption.AllDirectories))
-                {
-                    string s = newPath.Replace(publishPath2, kasraWebServicePath);
+                    string s = newPath.Replace(sourceAddress, destinationAddress);
                     File.Copy(newPath, s, true);
                     counter++;
                     FrmInstallationProcessObj.ProgressBarValue = counter * 100 / allFiles;
@@ -155,12 +118,12 @@ namespace KasraMobileMiddleware
         {
             try
             {
-                string path = FrmInstallationProcessObj.ProjectPath + FrmInstallationProcessObj.WebsiteName + "\\" + FrmInstallationProcessObj.WebsiteName + "\\MobileLog.txt";
+                string path = FrmInstallationProcessObj.ProjectPath + FrmInstallationProcessObj.WebsiteName + "\\Project" + "\\MobileLog.txt";
                 using (StreamWriter sw = File.CreateText(path))
                 {
                     sw.Write(FrmInstallationProcessObj.TextAppend);
                 }
-                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nلاگ فرایند در مسیر وبسایت ذخیره شد.";
+                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\n\r\nلاگ فرایند در مسیر وبسایت ذخیره شد.";
                 return true;
             }
             catch (Exception ex)
@@ -172,7 +135,7 @@ namespace KasraMobileMiddleware
                 return false;
             }
         }
-        public bool RestoreDatabaseAndLog()
+        public bool RestoreDatabaseAndLog(string portNumber, string publishPath, string databaseName, string databaseAddress, string databaseUsername, string databasePassword, string mDFAndlDFDest)
         {
             try
             {
@@ -180,16 +143,13 @@ namespace KasraMobileMiddleware
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nدر حال restore کردن دیتابیس...\r\n\r\n";
 
                 // Find the backup file location.
-                string pathToBAK = FrmInstallationProcessObj.PublishPath + "\\Db\\MobileBackup";
+                string pathToBAK = publishPath + "\\Db\\MobileBackup";
 
                 // Create the connection string needed to connect to the SQL server.
-                string connectionString = "Password=" + FrmInstallationProcessObj.DatabasePassword + ";Persist Security Info=True;User ID=" + FrmInstallationProcessObj.DatabaseUsername + ";Initial Catalog=master" + ";Data Source=" + FrmInstallationProcessObj.DatabaseInstanceName;
+                string connectionString = "Password=" + databasePassword + ";Persist Security Info=True;User ID=" + databaseUsername + ";Initial Catalog=master" + ";Data Source=" + databaseAddress;
 
                 // Establish the connection to the SQL server.
                 SqlConnection cnn = new SqlConnection(connectionString);
-
-                // Find the path to the destination folder where the
-                string pathToDest = FrmInstallationProcessObj.ProjectPath + FrmInstallationProcessObj.WebsiteName + "\\Data";
 
                 // Open the connection in order to get connected to the SQL server.
                 cnn.Open();
@@ -197,7 +157,7 @@ namespace KasraMobileMiddleware
                 // Set the MDF and LDF files names as they are in the backup file.
                 // If they are not accessable, the a defualt value is assigned to them.
                 string mdfName = "", ldfName = "";
-                var backupFileLogicalNames = returnBackupLogicalNames(pathToBAK);
+                var backupFileLogicalNames = ReturnBackupLogicalNames(databaseUsername, databaseAddress, databasePassword, pathToBAK);
                 if(backupFileLogicalNames == null || backupFileLogicalNames.Rows.Count == 0)
                 {
                     mdfName = "MobileMiddleWare";
@@ -210,9 +170,9 @@ namespace KasraMobileMiddleware
                 }
 
                 // Produce the command needed to restore the database in SQL server.
-                string command = $@"RESTORE DATABASE {FrmInstallationProcessObj.DatabaseName} FROM DISK = '{pathToBAK}'
-                                    WITH MOVE '{mdfName}' TO '{pathToDest}\{mdfName}.mdf',
-                                    MOVE '{ldfName}' TO '{pathToDest}\{ldfName}.ldf'";
+                string command = $@"RESTORE DATABASE {databaseName} FROM DISK = '{pathToBAK}'
+                                    WITH MOVE '{mdfName}' TO '{mDFAndlDFDest}\{mdfName}.mdf',
+                                    MOVE '{ldfName}' TO '{mDFAndlDFDest}\{ldfName}.ldf'";
 
                 // Create a new instance to the database using the commnad and cnn provided above.
                 SqlCommand myCommand = new SqlCommand(command, cnn)
@@ -226,36 +186,36 @@ namespace KasraMobileMiddleware
                 // Change the Url cell in the dbo.GatewayCompany table.
                 // The row's name is Kasra Hamrah.
                 string id = "48FC0F43-6468-4993-938A-83DB0897B3B4";
-                string newURL = GetURL(id);
-                if (FrmInstallationProcessObj.PortNumber != "80")
+                string newURL = GetURL(databaseName, databaseAddress, databaseUsername, databasePassword, id);
+                if (portNumber != "80")
                 {
-                    newURL= newURL.Replace("localhost", GetLocalIPAddress() + ":" + FrmInstallationProcessObj.PortNumber);
+                    newURL= newURL.Replace("localhost", GetLocalIPAddress() + ":" + portNumber);
                 }
                 else
                 {
                     newURL = newURL.Replace("localhost", GetLocalIPAddress());
                 }
-                ChangeURL(id, newURL);
+                ChangeURL(databaseName, databaseAddress, databaseUsername, databasePassword, id, newURL);
 
                 // Change the Url cell in the dbo.GatewayCompany table.
                 // The row's name is Kasra Nutrition.
                 id = "3C976C9B-2581-485D-BA3B-3500B75DE1AE";
-                newURL = GetURL(id);
-                if (FrmInstallationProcessObj.PortNumber != "80")
+                newURL = GetURL(databaseName, databaseAddress, databaseUsername, databasePassword, id);
+                if (portNumber != "80")
                 {
-                    newURL = newURL.Replace("localhost", GetLocalIPAddress() + ":" + FrmInstallationProcessObj.PortNumber);
+                    newURL = newURL.Replace("localhost", GetLocalIPAddress() + ":" + portNumber);
                 }
                 else
                 {
                     newURL = newURL.Replace("localhost", GetLocalIPAddress());
                 }
-                ChangeURL(id, newURL);
+                ChangeURL(databaseName, databaseAddress, databaseUsername, databasePassword, id, newURL);
 
                 // Close the connection that was created to the master database.
                 cnn.Close();
 
                 // Log that the restoring process has ended.
-                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nدیتابیس با موفقیت restore شد.\r\n\r\n";
+                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nدیتابیس با موفقیت restore شد.";
                 return true;
             }
             catch (Exception ex)
@@ -268,9 +228,9 @@ namespace KasraMobileMiddleware
             }
         }
 
-        private DataTable returnBackupLogicalNames(string backupFileLocation)
+        private DataTable ReturnBackupLogicalNames(string databaseUsername, string databaseAddress, string databasePassword, string backupFileLocation)
         {
-            var connectionString = "Password=" + FrmInstallationProcessObj.DatabasePassword + ";Persist Security Info=True;User ID=" + FrmInstallationProcessObj.DatabaseUsername + ";Initial Catalog=master" + ";Data Source=" + FrmInstallationProcessObj.DatabaseInstanceName;
+            var connectionString = "Password=" + databasePassword + ";Persist Security Info=True;User ID=" + databaseUsername + ";Initial Catalog=master" + ";Data Source=" + databaseAddress;
 
             SqlConnection cnn = new SqlConnection(connectionString);
 
@@ -300,11 +260,11 @@ namespace KasraMobileMiddleware
         }
 
         // This method changes the Url cells in dbo.GatewayCompany.
-        private void ChangeURL(string id, string newURL)
+        private void ChangeURL(string databaseName, string databaseAddress, string databaseUsername, string databasePassword, string id, string newURL)
         {
             try
             {
-                string connectionString = "Password=" + FrmInstallationProcessObj.DatabasePassword + ";Persist Security Info=True;User ID=" + FrmInstallationProcessObj.DatabaseUsername + ";Initial Catalog=" + FrmInstallationProcessObj.DatabaseName + ";Data Source=" + FrmInstallationProcessObj.DatabaseInstanceName;
+                string connectionString = $"Password={databasePassword};Persist Security Info=True;User ID={databaseUsername};Initial Catalog={databaseName};Data Source={databaseAddress}";
                 SqlConnection cnn = new SqlConnection(connectionString);
                 var command = $@"UPDATE dbo.GatewayCompany 
                                  SET 
@@ -322,11 +282,11 @@ namespace KasraMobileMiddleware
                 MessageBox.Show(ex.Message);
             }
         }
-        private string GetURL(string id)
+        private string GetURL(string databaseName, string databaseAddress, string databaseUsername, string databasePassword, string id)
         {
             try
             {
-                string connectionString = "Password=" + FrmInstallationProcessObj.DatabasePassword + ";Persist Security Info=True;User ID=" + FrmInstallationProcessObj.DatabaseUsername + ";Initial Catalog=" + FrmInstallationProcessObj.DatabaseName + ";Data Source=" + FrmInstallationProcessObj.DatabaseInstanceName;
+                string connectionString = $"Password={databasePassword};Persist Security Info=True;User ID={databaseUsername};Initial Catalog={databaseName};Data Source={databaseAddress}";
                 SqlConnection cnn = new SqlConnection(connectionString);
                 string command = $"SELECT [Url] FROM dbo.GatewayCompany WHERE [Id] = '{id}'";
                 SqlCommand myCommand = new SqlCommand(command, cnn);

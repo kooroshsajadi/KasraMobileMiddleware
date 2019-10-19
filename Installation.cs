@@ -27,7 +27,7 @@ namespace KasraMobileMiddleware
                 appPool.Enable32BitAppOnWin64 = true;
 
                 // Create the customized website where the app files are stored(in the 'websitePhysicalPath').
-                string websitePhysicalPath = FrmInstallationProcessObj.ProjectPath + FrmInstallationProcessObj.WebsiteName + "\\" + FrmInstallationProcessObj.WebsiteName;
+                string websitePhysicalPath = FrmInstallationProcessObj.ProjectPath + FrmInstallationProcessObj.WebsiteName + "\\Project";
                 Site mySite = serverManager.Sites.Add(FrmInstallationProcessObj.WebsiteName, "http", "*:" + FrmInstallationProcessObj.PortNumber + ":", websitePhysicalPath);
 
                 // Add the website and its applications to the pool.
@@ -37,13 +37,13 @@ namespace KasraMobileMiddleware
                 string appPhysicalPath = websitePhysicalPath + "\\KasraWebService";
                 mySite.Applications.Add("/KasraWebService", appPhysicalPath);
                 // Change its web config file.
-                ChangeWebServiceWebConfig(appPhysicalPath + "\\Web.config");
+                ChangeWebServiceWebConfig(appPhysicalPath + "\\Web.config", FrmInstallationProcessObj.KasraWebsiteDatabaseName, FrmInstallationProcessObj.KasraWebsiteDatabasePassword);
 
                 // Add the 'MobileMiddleWare' app.
                 appPhysicalPath = websitePhysicalPath + "\\MobileMiddleWare";
                 mySite.Applications.Add("/MobileMiddleWare", appPhysicalPath);
                 // Change its web config file.
-                string connectionString = "Data Source=" + FrmInstallationProcessObj.DatabaseInstanceName + ";" + FrmInstallationProcessObj.DatabaseName + ";MultipleActiveResultSets=true;persist security info=True;User ID=" + FrmInstallationProcessObj.DatabaseUsername + ";Password=" + FrmInstallationProcessObj.DatabasePassword + ";Max Pool Size=300;";
+                string connectionString = "Data Source=" + FrmInstallationProcessObj.MobileDatabaseAddress + ";" + FrmInstallationProcessObj.MobileDatabaseName + ";MultipleActiveResultSets=true;persist security info=True;User ID=" + FrmInstallationProcessObj.MobileDatabaseUsername + ";Password=" + FrmInstallationProcessObj.MobileDatabasePassword + ";Max Pool Size=300;";
                 string pathToWebConfiog = appPhysicalPath + "\\Web.config";
                 ChangeMobileMiddlewareWebConfig(connectionString, pathToWebConfiog);
 
@@ -63,17 +63,17 @@ namespace KasraMobileMiddleware
                 return false;
             }
         }
-        private void ChangeWebServiceWebConfig(string PathToWebConfig)
+        private void ChangeWebServiceWebConfig(string PathToWebConfig, string databseName, string databaseAddress)
         {
             try
             {
                 XDocument config = XDocument.Load(PathToWebConfig);
                 XElement targetNode = config.Root.Element("appSettings").Elements("add").SingleOrDefault(x => x.FirstAttribute.Value == "DataSource");
-                targetNode.LastAttribute.Value = FrmInstallationProcessObj.DatabaseInstanceName;
+                targetNode.LastAttribute.Value = databaseAddress;
                 XElement targetNodePw = config.Root.Element("appSettings").Elements("add").SingleOrDefault(x => x.FirstAttribute.Value == "InitialCatalog");
-                targetNodePw.LastAttribute.Value = FrmInstallationProcessObj.DatabaseName;
+                targetNodePw.LastAttribute.Value = databseName;
                 var targetNodeAddress = config.Root.Element("appSettings").Elements("add").SingleOrDefault(x => x.FirstAttribute.Value == "BaseCatalog");
-                targetNodeAddress.LastAttribute.Value = FrmInstallationProcessObj.DatabaseName;
+                targetNodeAddress.LastAttribute.Value = databseName;
 
                 config.Save(PathToWebConfig);
             }
