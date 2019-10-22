@@ -51,6 +51,7 @@ namespace KasraMobileMiddleware
 
                 // Log that the website creation was a success.
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nسایت با موفقیت بارگزاری شد.\r\n\r\n";
+                serverManager.Dispose();
                 return true;
             }
             catch(Exception ex)
@@ -59,7 +60,7 @@ namespace KasraMobileMiddleware
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
                 FrmInstallationProcessObj.TextAppend = $"{ex.Message}\r\n\r\n";
                 FileManager fileManager = new FileManager();
-                fileManager.SaveTheLogAndLog();
+                fileManager.SaveTheMobileLogAndLog();
                 return false;
             }
         }

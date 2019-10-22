@@ -21,54 +21,6 @@ namespace KasraMobileMiddleware
 
         }
 
-        // This method creates the needed directories in the project path before copying the web app files to the mentioned location.
-        private string CreateProjectDirectories(string projectPath)
-        {
-            try
-            {
-                
-                // Define 'ProjectDrive\{WebsiteName}\{WebsiteName}' directories.
-                string newDirectories = $@"{FrmInstallationProcessObj.WebsiteName}\{FrmInstallationProcessObj.WebsiteName}";
-                string dir = $"{projectPath}";
-
-                // Create '{WebsiteName}\{WebsiteName}' directories.
-                Directory.CreateDirectory(dir);
-
-                return dir;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "خطایی رخ داد");
-                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
-                FrmInstallationProcessObj.TextAppend = $"\r\n{ex.Message}\r\n\r\n";
-                SaveTheLogAndLog();
-                return null;
-            }
-        }
-
-        private string CreateDataDirectory()
-        {
-            try
-            {
-                // Define 'ProjectDrive\{WebsiteName}\{WebsiteName}\Data' directory.
-                string newDirectories = $@"{FrmInstallationProcessObj.WebsiteName}\Data";
-                string dir = FrmInstallationProcessObj.ProjectPath + newDirectories;
-
-                // Create '{WebsiteName}\{WebsiteName}\Data' directories.
-                Directory.CreateDirectory(dir);
-
-                return dir;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "خطایی رخ داد");
-                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
-                FrmInstallationProcessObj.TextAppend = $"{ex.Message}\r\n\r\n";
-                SaveTheLogAndLog();
-                return null;
-            }
-        }
-
         /* 
          * This method copies the web app files from the the publish path to the project path.
          * Before begining the copying process it first creates the needed directories.
@@ -110,7 +62,7 @@ namespace KasraMobileMiddleware
                 MessageBox.Show(ex.Message, "خطایی رخ داد");
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
                 FrmInstallationProcessObj.TextAppend = $"{ex.Message}\r\n\r\n";
-                SaveTheLogAndLog();
+                SaveTheMobileLogAndLog();
                 return false;
             }
         }
@@ -214,6 +166,7 @@ namespace KasraMobileMiddleware
 
                 // Log that the restoring process has ended.
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nدیتابیس با موفقیت restore شد.";
+                myCommand.Dispose();
                 return true;
             }
             catch (Exception ex)
@@ -221,7 +174,7 @@ namespace KasraMobileMiddleware
                 MessageBox.Show(ex.Message, "خطایی رخ داد");
                 FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
                 FrmInstallationProcessObj.TextAppend = $"{ex.Message}\r\n\r\n";
-                SaveTheLogAndLog();
+                SaveTheMobileLogAndLog();
                 return false;
             }
         }
@@ -239,8 +192,10 @@ namespace KasraMobileMiddleware
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(myCommand);
 
             // Initialize a data table and add the amount that the adapter holds to it.
-            var result = new DataTable();
+            DataTable result = new DataTable();
             sqlDataAdapter.Fill(result);
+
+            sqlDataAdapter.Dispose();
 
             return result;
         }
@@ -271,8 +226,9 @@ namespace KasraMobileMiddleware
                                     [Id] = '{id}';";
                 SqlCommand myCommand = new SqlCommand(command, cnn);
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(myCommand);
-                var result = new DataTable();
+                DataTable result = new DataTable();
                 sqlDataAdapter.Fill(result);
+                sqlDataAdapter.Dispose();
                 cnn.Close();
             }
             catch(Exception ex)
@@ -292,7 +248,8 @@ namespace KasraMobileMiddleware
                 DataTable result = new DataTable();
                 sqlDataAdapter.Fill(result);
                 cnn.Close();
-                var urlString = result.Rows[0][0].ToString();
+                string urlString = result.Rows[0][0].ToString();
+                sqlDataAdapter.Dispose();
                 return urlString;
             }
             catch (Exception ex)
