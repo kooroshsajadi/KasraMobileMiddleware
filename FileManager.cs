@@ -74,7 +74,7 @@ namespace KasraMobileMiddleware
          * Before begining the copying process it first creates the needed directories.
          * It also logs the appropraite messages while copying the files.
          */
-        public bool CopyAndLog(string sourceAddress, string destinationAddress)
+        public bool MobileCopyAndLog(string sourceAddress, string destinationAddress)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace KasraMobileMiddleware
                 return false;
             }
         }
-        public bool SaveTheLogAndLog()
+        public bool SaveTheMobileLogAndLog()
         {
             try
             {
@@ -123,19 +123,17 @@ namespace KasraMobileMiddleware
                 {
                     sw.Write(FrmInstallationProcessObj.TextAppend);
                 }
-                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\n\r\nلاگ فرایند در مسیر وبسایت ذخیره شد.";
+                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nلاگ فرایند در مسیر وبسایت ذخیره شد.";
                 return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "خطایی رخ داد");
-                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\nتوقف برنامه. خطای زیر رخ داده است:\r\n";
-                FrmInstallationProcessObj.TextAppend = $"\r\n{ex.Message}\r\n\r\n";
-                SaveTheLogAndLog();
+                FrmInstallationProcessObj.TextAppend = DateTime.Now + "\r\n خطای زیر در حین ذخیره لاگ رخ داده است:\r\n";
+                FrmInstallationProcessObj.TextAppend = $"{ex.Message}";
                 return false;
             }
         }
-        public bool RestoreDatabaseAndLog(string portNumber, string publishPath, string databaseName, string databaseAddress, string databaseUsername, string databasePassword, string mDFAndlDFDest)
+        public bool RestoreMobileDatabaseAndLog(string portNumber, string publishPath, string databaseName, string databaseAddress, string databaseUsername, string databasePassword, string mDFAndlDFDest)
         {
             try
             {

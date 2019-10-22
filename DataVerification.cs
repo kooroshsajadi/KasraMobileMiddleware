@@ -19,28 +19,37 @@ namespace KasraMobileMiddleware
             FrmSetupInstallationObj = frmSetupInstallation;
         }
 
-        public void ProjectPathVerification()
+        public bool ProjectPathVerification(string selectedPath)
         {
-            if (FrmSetupInstallationObj.FolderBrowserSelectedPath.StartsWith("C"))
+            if (selectedPath.StartsWith("C"))
+            {
                 MessageBox.Show("!" + "باشد " + "C " + "درایو انتخاب شده نباید درایو ");
-            else if (FrmSetupInstallationObj.FolderBrowserSelectedPath.Length != 3)
+                return false;
+            }
+            else if (selectedPath.Length != 3)
+            {
                 MessageBox.Show("." + "را انتخاب کنید " + "C " + "در این قسمت فقط باید نام یک درایو به غیر از درایو ");
+                return false;
+            }
             else
-                FrmSetupInstallationObj.ProjectPath = FrmSetupInstallationObj.FolderBrowserSelectedPath;
+                return true;
         }
 
-        public void PublishPathVerification()
+        public bool PublishPathVerification(string selectedPath)
         {
-            if (FrmSetupInstallationObj.FolderBrowserSelectedPath.StartsWith("C"))
+            if (selectedPath.StartsWith("C"))
+            {
                 MessageBox.Show("!" + "باشد" + " C " + "مسیر پابلیش نباید در درایو ");
+                return false;
+            }
             else
-                FrmSetupInstallationObj.PublishPath = FrmSetupInstallationObj.FolderBrowserSelectedPath;
+                return true;
         }
 
         // This method connects to the IIS and checks the website names available in it
         // to find out if the 'websiteName' string is equal to any one of them or not. It does so for app pools.
         // If it finds equality, the field related to the website name will get cleared.
-        private string WebsiteNameVerification()
+        public string MobileWebsiteAndAppPoolNameVerification()
         {
             if (FrmSetupInstallationObj.WebsiteName == string.Empty)
                 return "!" + "نام سایت انتخاب نشده";
@@ -71,7 +80,7 @@ namespace KasraMobileMiddleware
         }
 
         // This method checks if the port number is valid integer and then checks for its availability.
-        private string PortNumberVerification()
+        public string PortNumberVerification()
         {
             int portNumber = 0;
             if (FrmSetupInstallationObj.PortNumber == string.Empty)
@@ -97,12 +106,12 @@ namespace KasraMobileMiddleware
         }
 
         // This method checks the connectability to the database.
-        public bool DatabaseConnectabilityVerification(string databaseName, string instanceName, string databaseUsername, string databasePassword, bool createDatabase)
+        public bool MobileDatabaseConnectabilityVerification(string databaseName, string databaseAddress, string databaseUsername, string databasePassword, bool createDatabase)
         {
             try
             {
                 // Try to open the SQL server using the connection string.
-                string connectionString = "Password=" + databasePassword + ";Persist Security Info=True;User ID=" + databaseUsername + ";Initial Catalog=master" + ";Data Source=" + instanceName;
+                string connectionString = "Password=" + databasePassword + ";Persist Security Info=True;User ID=" + databaseUsername + ";Initial Catalog=master" + ";Data Source=" + databaseAddress;
                 SqlConnection cnn = new SqlConnection(connectionString);
                 cnn.Open();
 
@@ -162,38 +171,6 @@ namespace KasraMobileMiddleware
                 }
             }
             return list;
-        }
-        public string FinalVerification()
-        {
-            // Create the final verification string.
-            string finalMessage = string.Empty;
-
-            // Add the port number verification message if it is not empty.
-            string portNumberMessage = PortNumberVerification();
-            if (portNumberMessage != string.Empty)
-                finalMessage += portNumberMessage + "\n";
-
-            // Add the website name verification message if it is not empty.
-            string websiteNameMessage = WebsiteNameVerification();
-            if (websiteNameMessage != string.Empty)
-                finalMessage += websiteNameMessage + "\n";
-
-            // Add the publish path verification message if it is not empty.
-            string publishPathMessage = (FrmSetupInstallationObj.PublishPath == string.Empty) ? "!" + "مسیر پابلیش انتخاب نشده\n" : string.Empty;
-            if (publishPathMessage != string.Empty)
-                finalMessage += publishPathMessage;
-
-            // Add the project path verification message if it is not empty.
-            string projectPathMessage = (FrmSetupInstallationObj.ProjectPath == string.Empty) ? "!" + "مسیر پروژه انتخاب نشده\n" : string.Empty;
-            if (projectPathMessage != string.Empty)
-                finalMessage += projectPathMessage;
-
-            // If the final verification message is not enmty, return it.
-            if (finalMessage != string.Empty)
-                return finalMessage;
-
-            // Otherwise an empty string is returned.
-            return string.Empty;
-        }
+        } 
     }
 }

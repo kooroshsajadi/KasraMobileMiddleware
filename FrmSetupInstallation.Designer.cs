@@ -40,6 +40,7 @@
             this.LbMobileDatabaseUsername = new System.Windows.Forms.Label();
             this.LbDatabaseDatabasePassword = new System.Windows.Forms.Label();
             this.GroupBxApplication = new System.Windows.Forms.GroupBox();
+            this.BtnWebsieAndInfoVerification = new System.Windows.Forms.Button();
             this.LbNote = new System.Windows.Forms.Label();
             this.BtnBrowseProjectPath = new System.Windows.Forms.Button();
             this.TxtBxProjectPath = new System.Windows.Forms.TextBox();
@@ -180,6 +181,7 @@
             // 
             // GroupBxApplication
             // 
+            this.GroupBxApplication.Controls.Add(this.BtnWebsieAndInfoVerification);
             this.GroupBxApplication.Controls.Add(this.LbNote);
             this.GroupBxApplication.Controls.Add(this.BtnBrowseProjectPath);
             this.GroupBxApplication.Controls.Add(this.TxtBxProjectPath);
@@ -198,6 +200,25 @@
             this.GroupBxApplication.TabIndex = 0;
             this.GroupBxApplication.TabStop = false;
             this.GroupBxApplication.Text = "Application";
+            // 
+            // BtnWebsieAndInfoVerification
+            // 
+            this.BtnWebsieAndInfoVerification.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.BtnWebsieAndInfoVerification.BackColor = System.Drawing.Color.Transparent;
+            this.BtnWebsieAndInfoVerification.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnWebsieAndInfoVerification.BackgroundImage")));
+            this.BtnWebsieAndInfoVerification.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnWebsieAndInfoVerification.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnWebsieAndInfoVerification.FlatAppearance.BorderSize = 0;
+            this.BtnWebsieAndInfoVerification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnWebsieAndInfoVerification.ForeColor = System.Drawing.Color.White;
+            this.BtnWebsieAndInfoVerification.Location = new System.Drawing.Point(351, 105);
+            this.BtnWebsieAndInfoVerification.Name = "BtnWebsieAndInfoVerification";
+            this.BtnWebsieAndInfoVerification.Size = new System.Drawing.Size(80, 35);
+            this.BtnWebsieAndInfoVerification.TabIndex = 12;
+            this.BtnWebsieAndInfoVerification.Text = "بررسی";
+            this.BtnWebsieAndInfoVerification.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.BtnWebsieAndInfoVerification.UseVisualStyleBackColor = false;
+            this.BtnWebsieAndInfoVerification.Click += new System.EventHandler(this.BtnWebsiteAndInfoVerification_Click);
             // 
             // LbNote
             // 
@@ -223,7 +244,7 @@
             this.BtnBrowseProjectPath.FlatAppearance.BorderSize = 0;
             this.BtnBrowseProjectPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBrowseProjectPath.ForeColor = System.Drawing.Color.White;
-            this.BtnBrowseProjectPath.Location = new System.Drawing.Point(456, 105);
+            this.BtnBrowseProjectPath.Location = new System.Drawing.Point(437, 105);
             this.BtnBrowseProjectPath.Name = "BtnBrowseProjectPath";
             this.BtnBrowseProjectPath.Size = new System.Drawing.Size(80, 35);
             this.BtnBrowseProjectPath.TabIndex = 3;
@@ -234,11 +255,11 @@
             // 
             // TxtBxProjectPath
             // 
-            this.TxtBxProjectPath.Location = new System.Drawing.Point(542, 107);
+            this.TxtBxProjectPath.Location = new System.Drawing.Point(523, 107);
             this.TxtBxProjectPath.Name = "TxtBxProjectPath";
             this.TxtBxProjectPath.ReadOnly = true;
             this.TxtBxProjectPath.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TxtBxProjectPath.Size = new System.Drawing.Size(248, 26);
+            this.TxtBxProjectPath.Size = new System.Drawing.Size(267, 26);
             this.TxtBxProjectPath.TabIndex = 3;
             // 
             // BtnBrowsePublishPath
@@ -251,7 +272,7 @@
             this.BtnBrowsePublishPath.FlatAppearance.BorderSize = 0;
             this.BtnBrowsePublishPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBrowsePublishPath.ForeColor = System.Drawing.Color.White;
-            this.BtnBrowsePublishPath.Location = new System.Drawing.Point(456, 58);
+            this.BtnBrowsePublishPath.Location = new System.Drawing.Point(437, 59);
             this.BtnBrowsePublishPath.Name = "BtnBrowsePublishPath";
             this.BtnBrowsePublishPath.Size = new System.Drawing.Size(80, 35);
             this.BtnBrowsePublishPath.TabIndex = 2;
@@ -262,17 +283,17 @@
             // 
             // TxtBxPublishPath
             // 
-            this.TxtBxPublishPath.Location = new System.Drawing.Point(542, 61);
+            this.TxtBxPublishPath.Location = new System.Drawing.Point(523, 61);
             this.TxtBxPublishPath.Name = "TxtBxPublishPath";
             this.TxtBxPublishPath.ReadOnly = true;
             this.TxtBxPublishPath.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TxtBxPublishPath.Size = new System.Drawing.Size(248, 26);
+            this.TxtBxPublishPath.Size = new System.Drawing.Size(267, 26);
             this.TxtBxPublishPath.TabIndex = 2;
             // 
             // TxtBxPortNumber
             // 
             this.TxtBxPortNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.TxtBxPortNumber.Location = new System.Drawing.Point(456, 19);
+            this.TxtBxPortNumber.Location = new System.Drawing.Point(437, 19);
             this.TxtBxPortNumber.Name = "TxtBxPortNumber";
             this.TxtBxPortNumber.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.TxtBxPortNumber.Size = new System.Drawing.Size(131, 26);
@@ -309,7 +330,7 @@
             // LbPortNumber
             // 
             this.LbPortNumber.AutoSize = true;
-            this.LbPortNumber.Location = new System.Drawing.Point(593, 22);
+            this.LbPortNumber.Location = new System.Drawing.Point(574, 22);
             this.LbPortNumber.Name = "LbPortNumber";
             this.LbPortNumber.Size = new System.Drawing.Size(33, 19);
             this.LbPortNumber.TabIndex = 1;
@@ -514,6 +535,7 @@
         private System.Windows.Forms.Label LbKasraWebsiteDatabaseAddress;
         private System.Windows.Forms.Label LbKasraWebsiteDatabaseUsername;
         private System.Windows.Forms.Label LbKasraWebsiteDatabasePassword;
+        private System.Windows.Forms.Button BtnWebsieAndInfoVerification;
     }
 }
 

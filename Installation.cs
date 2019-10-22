@@ -13,7 +13,7 @@ namespace KasraMobileMiddleware
         {
             FrmInstallationProcessObj = frmInstallationProcessObj;
         }
-        public bool ConfigureWebsiteAndLog()
+        public bool ConfigureMobileWebsiteAndLog()
         {
             try
             {

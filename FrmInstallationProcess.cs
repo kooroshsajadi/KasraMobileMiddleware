@@ -78,20 +78,23 @@ namespace KasraMobileMiddleware
                     string dir = $"{ProjectPath}\\{WebsiteName}\\Project";
 
                     FileManager fileManager = new FileManager(this);
-                    flag = fileManager.CopyAndLog($"{PublishPath}\\App", dir);
+                    flag = fileManager.MobileCopyAndLog($"{PublishPath}\\App", dir);
                     Installation installation = new Installation(this);
                     if (flag)
-                        flag = installation.ConfigureWebsiteAndLog();
+                        flag = installation.ConfigureMobileWebsiteAndLog();
                     if (flag)
                     {
                         // Create the MDF and LDF files directory.
                         dir = $"{ProjectPath}\\{WebsiteName}\\Data";
                         Directory.CreateDirectory(dir);
 
-                        flag = fileManager.RestoreDatabaseAndLog(PortNumber, PublishPath, MobileDatabaseName, MobileDatabaseAddress, MobileDatabaseUsername, MobileDatabasePassword, dir);
+                        flag = fileManager.RestoreMobileDatabaseAndLog(PortNumber, PublishPath, MobileDatabaseName, MobileDatabaseAddress, MobileDatabaseUsername, MobileDatabasePassword, dir);
                     }
+
                     if (flag)
-                        flag = fileManager.SaveTheLogAndLog();
+                        TextAppend = "\r\n\r\n" + DateTime.Now + "\r\nفرایند نصب تکمیل شد.\r\n\r\n";
+                    if (flag)
+                        flag = fileManager.SaveTheMobileLogAndLog();
                 });
             }
             catch(Exception ex)
